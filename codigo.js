@@ -1,33 +1,47 @@
-let cantidad = prompt("¿cuantos alumnos son?");
-let alumnosTotales = [];
-
-for (i = 0; i < cantidad; i++) {
-	alumnosTotales[i] = [prompt("Nombre del alumno " + (i+1)),0];
-}
-
-const tomarAsistencia = (nombre,p)=>{
-	let presencia = prompt(nombre);
-	if (presencia == "p" || presencia == "P") {
-	    alumnosTotales[p][1]++;
+class Estudio{
+	constructor(dia, materia, horas){
+		this.dia = dia
+		this.materia = materia
+		this.horas = horas
 	}
 }
 
+let HsEstudio = []
 
-for (i = 0; i < 30; i++) {
-	for (alumno in alumnosTotales) {
-	tomarAsistencia(alumnosTotales[alumno][0],alumno);
-	}
+if(localStorage.getItem("HsEstudio")) {
+	HsEstudio = JSON.parse(localStorage.getItem("HsEstudio"))
+} else {
+	localStorage.setItem("HsEstudio", JSON.stringify(HsEstudio))
 }
 
+const form = document.getElementById("form")
+const botonHsEstudio = document.getElementById("btnHsEstudio")
+const divHsEstudio = document.getElementById("divHsEstudio")
 
-for (alumno in alumnosTotales) {
-	let resultado = `${alumnosTotales[alumno][0]}:<br>
-    Presentes: ${alumnosTotales[alumno][1]}<br>
-    Ausencias: ${30 - alumnosTotales[alumno][1]}`;
-	if (30 - alumnosTotales[alumno][1] > 18) {
-	resultado+= "REPROBADO POR INASISTENCIAS<br><br>";
-	} else {
-	resultado+= "<br><br>"
-	}
-	document.write(resultado)
-}
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const datosForm = new FormData(e.target)
+
+    const datos = new Estudio(datosForm.get("dias"), datosForm.get("materia"), datosForm.get("horas"))
+    
+    HsEstudio.push(datos)
+
+    localStorage.setItem('HsEstudio', JSON.stringify(HsEstudio))
+
+    form.reset()
+})
+
+botonHsEstudio.addEventListener('click', () => {
+    const horasEst = JSON.parse(localStorage.getItem('HsEstudio'))
+
+    divHsEstudio.innerHTML = ""
+
+    horasEst.forEach((estudio, indice) => {
+        divHsEstudio.innerHTML += `
+			<ul id=horaEst${indice}>
+				<li>El dia ${estudio.dia}, estudie ${estudio.materia}, durante ${estudio.horas}</li>
+			</ul>
+        
+        `
+    })
+})
