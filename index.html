@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
     <title>Document</title>
 </head>
 <body>
     <div class="conteiner">
         <form id="form">
             <select name="dias">
+                <option>DIAS:</option>
                 <option>Lunes</option>
                 <option>Martes</option>
                 <option>Miercoles</option>
@@ -17,6 +19,7 @@
                 <option>Viernes</option>
             </select><br>
             <select name="materia">
+                <option>MATERIA:</option>
                 <option>Matematica</option>
                 <option>Lengua</option>
                 <option>Historia</option>
@@ -24,6 +27,7 @@
                 <option>Programacion</option>
             </select><br>
             <select name="horas">
+                <option>HORAS:</option>
                 <option>1 hora</option>
                 <option>2 horas</option>
                 <option>3 horas</option>
@@ -33,13 +37,15 @@
                 <option>7 horas</option>
                 <option>8 horas</option>
             </select><br>
-            <button type="submit">ENVIAR</button>
+            <button type="submit" class="btnEnviar">ENVIAR</button>
         </form>
     </div>
-    <div>
-        <button id="btnHsEstudio">Ver horas estudiadas</button>
-        <div id="divHsEstudio"></div>
+    <div class="contenedor">
+        <button id="btnHsEstudio" class="btn2">Ver horas estudiadas</button>
     </div>
+    <div id="divHsEstudio" class="lista"></div>
+
+
     <script src="codigo.js"></script>
 </body>
 </html>
