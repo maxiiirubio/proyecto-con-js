@@ -58,12 +58,3 @@ botonHsEstudio.addEventListener('click', () => {
 		
     })
 })
-
-
-
-// const borrarElemnto = document.getElementById(`horaEst${indice}`) 
-
-// botonBorrar.addEventListener('click', () => {
-// 	borrarElemnto.remove()
-// 	HsEstudio.splice()
-// })
